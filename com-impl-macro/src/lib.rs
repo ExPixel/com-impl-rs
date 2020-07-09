@@ -45,13 +45,12 @@ pub fn implementation(attr: TokenStream, input: TokenStream) -> TokenStream {
 
     let input: syn::ItemImpl = syn::parse(input).expect("Could not parse interface impl block");
 
+    eprintln!("EP_DEBUG: folding signatures for {:?}...", input.self_ty);
     let mut imp = Implementation { fns: Vec::new() };
 
     let input = imp.fold_item_impl(input);
 
     let self_ty = &input.self_ty;
-
-    eprintln!("EP_DEBUG: folding signatures...");
 
     let fns = &imp.fns;
     let methods = fns.iter().map(|id| {
