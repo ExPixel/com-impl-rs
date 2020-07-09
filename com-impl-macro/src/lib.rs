@@ -139,7 +139,7 @@ impl Fold for Implementation {
         // Ensure the functions have the right ABI.
         f.abi = Some(parse_quote!(extern "system"));
 
-        eprintln!("EP_DEBUG: folded signature for {} ({:?})", f.ident, f.abi);
+        eprintln!("EP_DEBUG: folded signature for {} ({:?})", f.ident, f.abi.clone().unwrap().name);
 
         // Store the identifier for later.
         self.fns.push(f.ident.clone());
