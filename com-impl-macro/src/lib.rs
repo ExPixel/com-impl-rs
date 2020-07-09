@@ -49,7 +49,7 @@ pub fn implementation(attr: TokenStream, input: TokenStream) -> TokenStream {
 
     let input = imp.fold_item_impl(input);
 
-    let self_ty = &input.self_ty
+    let self_ty = &input.self_ty;
 
     eprintln!("EP_DEBUG: folding signatures...");
 
