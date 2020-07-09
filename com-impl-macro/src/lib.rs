@@ -14,6 +14,7 @@ use self::proc_macro::TokenStream;
 
 use syn::fold::Fold;
 use syn::{Ident, ItemStruct, Fields, FieldsNamed};
+use core::fmt::Debug;
 
 #[proc_macro_attribute]
 pub fn interface(attr: TokenStream, input: TokenStream) -> TokenStream {
