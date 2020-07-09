@@ -49,7 +49,9 @@ pub fn implementation(attr: TokenStream, input: TokenStream) -> TokenStream {
 
     let input = imp.fold_item_impl(input);
 
-    let self_ty = &input.self_ty;
+    let self_ty = &input.self_ty
+
+    eprintln!("EP_DEBUG: folding signatures...");
 
     let fns = &imp.fns;
     let methods = fns.iter().map(|id| {
@@ -136,6 +138,8 @@ impl Fold for Implementation {
     fn fold_method_sig(&mut self, mut f: MethodSig) -> MethodSig {
         // Ensure the functions have the right ABI.
         f.abi = Some(parse_quote!(extern "system"));
+
+        eprintln!("EP_DEBUG: folded signature for {}", f.ident);
 
         // Store the identifier for later.
         self.fns.push(f.ident.clone());
